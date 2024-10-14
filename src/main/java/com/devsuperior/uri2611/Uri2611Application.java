@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.devsuperior.uri2611.dto.MovieMinDTO;
 import com.devsuperior.uri2611.projections.MovieMinProjection;
 import com.devsuperior.uri2611.repositories.MovieRepository;
 
@@ -24,13 +25,14 @@ public class Uri2611Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		List<MovieMinProjection> list = repository.serach1("Action");
-//		List<CustomerMinDTO> result1 = list.stream().map(x -> new CustomerMinDTO(x)).collect(Collectors.toList());
+		List<MovieMinDTO> result1 = list.stream().map(x -> new MovieMinDTO(x)).collect(Collectors.toList());
 		
 		System.out.println("\n*** RESULTADO SQL RAIZ");
-		for (MovieMinProjection obj : list) {
-			System.out.println(obj.getName());
-			System.out.println(obj.getId());
+		for (MovieMinDTO obj : result1) {
+			System.out.println(obj);
 		}
+		
+		System.out.println("\n\n");
 		
 	}
 }
